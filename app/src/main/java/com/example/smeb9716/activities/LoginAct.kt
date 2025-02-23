@@ -101,6 +101,7 @@ class LoginAct : BaseActivity<ActLoginBinding>() {
     }
 
     private fun handleRegister() {
-
+        val intent = Intent(this, RegisterAct::class.java)
+        registerLauncher.launch(intent)
     }
 }

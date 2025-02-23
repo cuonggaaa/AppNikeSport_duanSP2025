@@ -23,6 +23,9 @@
         <activity android:name=".activities.LoginAct"
             android:exported="true"/>
 
+        <activity android:name=".activities.RegisterAct"
+            android:exported="true"/>
+
         <activity android:name=".activities.SplashAct"
             android:exported="true">
             <intent-filter>
