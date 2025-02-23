@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Shoes Store</string>
+    <string name="app_name">App Nike Sport</string>
 
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
@@ -12,7 +12,7 @@
     <string name="have_an_account">Bạn chưa có tài khoản!</string>
     <string name="have_you_created_an_account_yet">Bạn đã có tài khoản !</string>
 
-    <string name="title_splash">Store shoes - Take it easyyyy!</string>
+    <string name="title_splash">App Nike Sport - Take it easyyyy!</string>
     <string name="welcome_login">Chào mừng quay lại! Điền thông tin đăng nhập</string>
     <string name="title_email">Email</string>
     <string name="title_password">"Mật khẩu "</string>
