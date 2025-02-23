@@ -1,0 +1,73 @@
+[versions]
+agp = "8.5.2"
+flexbox = "3.0.0"
+hiltAndroid = "2.50"
+kotlin = "1.9.22"
+coreKtx = "1.13.1"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+appcompat = "1.7.0"
+material = "1.12.0"
+activity = "1.9.2"
+constraintlayout = "2.1.4"
+gson = "2.11.0"
+motionToast = "1.4"
+retrofit = "2.11.0"
+convertergson = "2.9.0"
+interceptor = "4.12.0"
+ok2curl = "0.8.0"
+lottie = "6.5.0"
+circleimageview = "3.1.0"
+glide = "4.16.0"
+lifecycleviewmodel = "2.8.5"
+fragment = "1.8.3"
+imageslideshow = "0.1.2"
+ksp = "1.9.10-1.0.13"
+hilt = "2.50"
+timber = "5.0.1"
+toasty = "1.5.2"
+coroutine = "1.7.3"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+
+flexbox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexbox" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson"}
+motionToast = { group = "com.github.Spikeysanju", name = "MotionToast", version.ref = "motionToast"}
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
+convertergson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "convertergson"}
+interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "interceptor"}
+ok2curl = { group = "com.github.mrmike", name = "ok2curl", version.ref = "ok2curl"}
+lottie = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie"}
+circleimageview = { group = "de.hdodenhof", name = "circleimageview", version.ref = "circleimageview"}
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide"}
+lifecycleviewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleviewmodel"}
+fragment = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragment"}
+imageslideshow = { group = "com.github.denzcoskun", name = "ImageSlideshow", version.ref = "imageslideshow" }
+
+timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
+toasty = { group = "com.github.GrenderG", name = "Toasty", version.ref = "toasty" }
+
+glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide" }
+
+coroutine-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutine" }
+coroutine-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutine" }
+viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", version = "1.0.0" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+
