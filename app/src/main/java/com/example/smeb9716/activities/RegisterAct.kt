@@ -13,6 +13,7 @@ import com.example.smeb9716.utils.validator.validateName
 import com.example.smeb9716.utils.validator.validatePassword
 import com.example.smeb9716.utils.validator.validatePhone
 import com.example.smeb9716.utils.validator.validateUsername
+import com.example.smeb9716.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -22,6 +23,7 @@ class RegisterAct : BaseActivity<ActRegisterBinding>() {
         private const val TAG = "RegisterAct"
     }
 
+    private val viewModel: RegisterViewModel by viewModels()
 
     override fun getViewBinding(): ActRegisterBinding {
         return ActRegisterBinding.inflate(layoutInflater)
@@ -45,6 +47,7 @@ class RegisterAct : BaseActivity<ActRegisterBinding>() {
                     password = binding.edtPassword.text.toString(),
                     address = binding.edtAddress.text.toString()
                 )
+                viewModel.registerUser(request)
             }
         }
 
@@ -81,7 +84,21 @@ class RegisterAct : BaseActivity<ActRegisterBinding>() {
     }
 
     override fun initObservers() {
-
+        lifecycleScope.launch {
+            viewModel.isLoading.collect {
+                showLoading(it)
+            }
+        }
+        lifecycleScope.launch {
+            viewModel.responseMessage.collect {
+                showMessage(this@RegisterAct, it.message, it.bgType)
+            }
+        }
+        viewModel.registerSuccess.observe(this) {
+            if (it) {
+                backToLogin(binding.edtEmail.text.toString(), binding.edtPassword.text.toString())
+            }
+        }
     }
 
     private fun validateInput(): Boolean {

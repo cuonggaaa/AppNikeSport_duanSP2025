@@ -14,6 +14,7 @@ import com.example.smeb9716.model.PREF_PASSWORD
 import com.example.smeb9716.utils.PreferManager
 import com.example.smeb9716.utils.validator.validatePassword
 import com.example.smeb9716.utils.validator.validateUsername
+import com.example.smeb9716.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -29,6 +30,7 @@ class LoginAct : BaseActivity<ActLoginBinding>() {
     private lateinit var preferManager: PreferManager
     private lateinit var registerLauncher: ActivityResultLauncher<Intent>
 
+    private val loginViewModel: LoginViewModel by viewModels()
 
     override fun getViewBinding(): ActLoginBinding {
         return ActLoginBinding.inflate(layoutInflater)
@@ -73,7 +75,30 @@ class LoginAct : BaseActivity<ActLoginBinding>() {
     }
 
     override fun initObservers() {
+        lifecycleScope.launch {
+            loginViewModel.isLoading.collect {
+                showLoading(it)
+            }
+        }
+        lifecycleScope.launch {
+            loginViewModel.responseMessage.collect {
+                showMessage(this@LoginAct, it.message, it.bgType)
+            }
+        }
 
+        loginViewModel.loginResponse.observe(this) {
+            if (it != null) {
+                if (binding.checkboxRememberLogin.isChecked) {
+                    preferManager.write(PREF_EMAIL, binding.edtEmail.text.toString())
+                    preferManager.write(PREF_PASSWORD, binding.edtPassword.text.toString())
+                } else {
+                    preferManager.write(PREF_EMAIL, null)
+                    preferManager.write(PREF_PASSWORD, null)
+                }
+
+                navigateToMain()
+            }
+        }
     }
 
     private fun navigateToMain() {
@@ -98,6 +123,7 @@ class LoginAct : BaseActivity<ActLoginBinding>() {
             return
         }
 
+        loginViewModel.login(binding.edtEmail.text.toString(), binding.edtPassword.text.toString())
     }
 
     private fun handleRegister() {
