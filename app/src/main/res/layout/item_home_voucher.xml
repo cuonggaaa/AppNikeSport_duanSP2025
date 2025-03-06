@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_voucher_image"
+            android:layout_width="160dp"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/png_temp"
+            app:layout_constraintDimensionRatio="1.6:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_voucher_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="start|top"
+            android:maxLines="1"
+            android:minLines="1"
+            android:padding="4dp"
+            android:textAlignment="textStart"
+            app:layout_constraintEnd_toEndOf="@id/iv_voucher_image"
+            app:layout_constraintStart_toStartOf="@id/iv_voucher_image"
+            app:layout_constraintTop_toBottomOf="@id/iv_voucher_image"
+            tools:text="askljdh siadja asdhlsa djsadsa djasdhsa d;askjdbasl kdjasdhasdasdhasodjsajidbslajdjasjbdnislajkjdhsahigbdsahijhdfluisa" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

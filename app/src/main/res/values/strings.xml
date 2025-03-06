@@ -5,6 +5,8 @@
     <string name="confirm">Confirm</string>
 
     <string name="home">Trang chủ</string>
+    <string name="gift">Kho quà</string>
+    <string name="profile">Cá nhân</string>
     <string name="login">Đăng nhập</string>
     <string name="enter_email">Nhập email</string>
     <string name="enter_password">Nhập mật khẩu</string>

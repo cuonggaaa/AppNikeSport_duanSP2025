@@ -8,6 +8,20 @@
     android:background="@color/white"
     tools:context=".MainActivity">
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_72"
+        android:background="@color/gray50"
+        android:elevation="0dp"
+        app:itemActiveIndicatorStyle="@style/Widget.Design.BottomNavigationView"
+        app:itemIconSize="@dimen/text_size_30"
+        app:itemTextAppearanceActive="@style/StyleBottomNavigationViewActive"
+        app:itemTextAppearanceInactive="@style/StyleBottomNavigationViewInactive"
+        app:itemTextColor="@color/selector_text_bottom_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
     <FrameLayout
         android:id="@+id/frameLayoutContainer"
         android:layout_width="match_parent"

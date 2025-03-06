@@ -10,6 +10,7 @@ import com.example.smeb9716.foundation.BaseActivity
 import com.example.smeb9716.model.PREF_EMAIL
 import com.example.smeb9716.model.PREF_PASSWORD
 import com.example.smeb9716.utils.PreferManager
+import com.example.smeb9716.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,6 +20,8 @@ class SplashAct : BaseActivity<ActSplashBinding>() {
     }
 
     private lateinit var preferManager: PreferManager
+
+    val viewModel: LoginViewModel by viewModels()
 
     override fun getViewBinding(): ActSplashBinding {
         return ActSplashBinding.inflate(layoutInflater)
@@ -38,7 +41,17 @@ class SplashAct : BaseActivity<ActSplashBinding>() {
     }
 
     override fun initObservers() {
-
+        // No observers to initialize for now
+        viewModel.loginResponse.observe(this) {
+            if (it != null) {
+                openMainScreen()
+            }
+        }
+        viewModel.isSplashLoginFail.observe(this) {
+            if (it) {
+                openLoginScreen()
+            }
+        }
     }
 
     private fun canLogin() {
@@ -48,6 +61,7 @@ class SplashAct : BaseActivity<ActSplashBinding>() {
 
 
         if (rememberEmail != null && rememberPassword != null) {
+            viewModel.login(rememberEmail, rememberPassword)
         } else {
             openLoginScreen()
         }
