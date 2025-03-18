@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/primary">
+
+        <ImageView
+            android:id="@+id/imv_back"
+            android:layout_width="@dimen/margin_32"
+            android:layout_height="@dimen/margin_32"
+            android:layout_marginStart="@dimen/margin_8"
+            android:background="@drawable/bg_circle_white"
+            android:padding="4dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black" />
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/sv_search"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginVertical="8.dp"
+            android:layout_marginStart="16.dp"
+            android:layout_marginEnd="16.dp"
+            android:background="@drawable/background_search"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imv_cart"
+            app:layout_constraintStart_toEndOf="@id/imv_back"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
+        <ImageView
+            android:id="@+id/imv_cart"
+            android:layout_width="@dimen/margin_24"
+            android:layout_height="@dimen/margin_24"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:clickable="true"
+            android:src="@drawable/ic_cart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_cart_count"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="-8dp"
+            android:layout_marginEnd="-8dp"
+            android:background="@drawable/bg_cart_count"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="@+id/imv_cart"
+            app:layout_constraintTop_toTopOf="@id/imv_cart"
+            tools:text="99" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_category"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_margin="@dimen/margin_16"
+        android:elevation="2dp"
+        android:visibility="visible"
+        app:cardCornerRadius="8dp"
+        app:cardUseCompatPadding="true">
+
+        <ImageView
+            android:id="@+id/iv_category"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.35"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_avatar" />
+
+        <TextView
+            android:id="@+id/tv_category"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:textColor="@color/secondary"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="ĐỒ UỐNG" />
+
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tbl_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_16"
+        android:background="@color/white"
+        app:tabIndicatorColor="@color/secondary"
+        app:tabSelectedTextColor="@color/secondary" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rev_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_16"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:itemCount="6"
+        tools:listitem="@layout/item_product_vertical" />
+
+</LinearLayout>

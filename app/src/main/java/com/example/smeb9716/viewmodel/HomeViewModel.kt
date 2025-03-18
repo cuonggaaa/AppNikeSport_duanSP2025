@@ -73,7 +73,80 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun getProducts() {
+        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
+            showLoading(true)
+            val response = apiRepository.getProducts()
+            showLoading(false)
+            handleResponse(response = response, onSuccess = {
+                it?.data?.data?.let { it1 -> getFavoriteProductIds(it1) }
+            }, onError = { errorMsg ->
+                // Handle error response
+                handleMessage(
+                    message = errorMsg ?: "Lỗi không xác định", bgType = BGType.BG_TYPE_ERROR
+                )
+            })
+        }
+    }
 
+    private fun getFavoriteProductIds(products: List<Product>) {
+        val productList = products.toMutableList()
+        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
+            showLoading(true)
+            val response = apiRepository.getFavoriteProducts(WholeApp.USER_ID)
+            showLoading(false)
+            handleResponse(response = response, onSuccess = {
+                it?.data?.forEach { favoriteProduct ->
+                    productList.find { it.id == favoriteProduct.product.id }?.isFavorite = true
+                }
+
+                _products.postValue(productList)
+            }, onError = { errorMsg ->
+                _products.postValue(productList)
+            })
+        }
+    }
+
+    fun addFavoriteProduct(product: Product) {
+        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
+            showLoading(true)
+            val response = apiRepository.addFavoriteProduct(WholeApp.USER_ID, product.id)
+            showLoading(false)
+            handleResponse(response = response, onSuccess = {
+                product.isFavorite = true
+                _products.value?.find { it.id == product.id }?.isFavorite = true
+                _products.postValue(_products.value)
+
+            }, onError = { errorMsg ->
+                // Handle error response
+                handleMessage(
+                    message = errorMsg ?: "Lỗi không xác định", bgType = BGType.BG_TYPE_ERROR
+                )
+            })
+        }
+    }
+
+    fun removeFavoriteProduct(product: Product) {
+        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
+            showLoading(true)
+
+            val response = apiRepository.removeFavoriteProduct(
+                userId = WholeApp.USER_ID, productId = product.id
+            )
+
+            showLoading(false)
+            handleResponse(response = response, onSuccess = {
+                product.isFavorite = false
+                _products.value?.find { it.id == product.id }?.isFavorite = false
+                _products.postValue(_products.value)
+            }, onError = { errorMsg ->
+                // Handle error response
+                handleMessage(
+                    message = errorMsg ?: "Lỗi không xác định", bgType = BGType.BG_TYPE_ERROR
+                )
+            })
+        }
+    }
 
     fun getVouchers() {
         viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
@@ -91,6 +164,5 @@ class HomeViewModel @Inject constructor(
             })
         }
     }
-
 
 }
