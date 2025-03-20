@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
+import com.example.smeb9716.R
 import com.example.smeb9716.adapter.HomeCategoryAdapter
 import com.example.smeb9716.adapter.HomeProductAdapter
 import com.example.smeb9716.adapter.HomeVoucherAdapter
@@ -19,6 +20,7 @@ import com.example.smeb9716.foundation.BaseFragment
 import com.example.smeb9716.model.Category
 import com.example.smeb9716.model.Product
 import com.example.smeb9716.model.WholeApp
+import com.example.smeb9716.utils.ext.addFragment
 import com.example.smeb9716.viewmodel.HomeViewModel
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
@@ -84,7 +86,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         recommendProductAdapter.setOnFavoriteClick(::onFavoriteClick)
         categoryAdapter.setOnCategoryClick(::onCategoryClick)
         voucherAdapter.setOnVoucherClick { voucher ->
-
         }
 
         val voucherLayoutManager =
@@ -108,7 +109,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
         binding.headerHome.svSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-               return true
+                val fragment = SearchFragment(ScreenMode.ProductSearch(query ?: ""))
+                addFragment(R.id.frameLayoutContainer, fragment, true)
+                return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
@@ -120,6 +123,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private fun refreshData() {
         userViewModel.getBanners()
         userViewModel.getCategories()
+        userViewModel.getProducts()
         userViewModel.getVouchers()
     }
 
@@ -184,7 +188,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun onCategoryClick(category: Category) {
-
+        // Handle category click event
+        val fragment = SearchFragment(ScreenMode.CategoryFilter(category))
+        addFragment(R.id.frameLayoutContainer, fragment, true)
     }
 
     private fun onProductClick(product: Product) {
@@ -192,6 +198,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun onFavoriteClick(product: Product, isFavorite: Boolean) {
+        // Handle favorite click event
 
+        if (isFavorite) {
+            userViewModel.addFavoriteProduct(product)
+        } else {
+            userViewModel.removeFavoriteProduct(product)
+        }
     }
 }
