@@ -18,6 +18,10 @@
     <string name="have_you_created_an_account_yet">Bạn đã có tài khoản !</string>
     <string name="read">Read</string>
     <string name="un_read">Unread</string>
+    <string name="change_password">Đổi mật khẩu</string>
+    <string name="help"><![CDATA[Trợ giúp & Hỗ trợ]]></string>
+    <string name="privacy">Privacy</string>
+    <string name="logout">Đăng xuất</string>
 
     <string name="title_splash">App Nike Sport - Take it easyyyy!</string>
     <string name="welcome_login">Chào mừng quay lại! Điền thông tin đăng nhập</string>

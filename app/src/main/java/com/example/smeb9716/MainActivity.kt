@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import com.example.smeb9716.databinding.ActivityMainBinding
 import com.example.smeb9716.foundation.BaseActivity
 import com.example.smeb9716.fragment.HomeFragment
+import com.example.smeb9716.fragment.ProfileFragment
 import com.example.smeb9716.utils.ext.replaceFragment
 import com.example.smeb9716.utils.views.ProgressDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,6 +46,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 }
 
                 R.id.bottomBarProfile -> {
+                    setCurrentFragment(ProfileFragment())
                     true
                 }
 

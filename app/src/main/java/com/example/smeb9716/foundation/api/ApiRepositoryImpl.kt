@@ -7,9 +7,11 @@ import com.example.smeb9716.model.WholeApp
 import com.example.smeb9716.model.filter.ProductSortBy
 import com.example.smeb9716.model.filter.ProductSortMode
 import com.example.smeb9716.model.request.AddFavoriteProductRequest
+import com.example.smeb9716.model.request.ChangePasswordRequest
 import com.example.smeb9716.model.request.DeleteFavoriteProductRequest
 import com.example.smeb9716.model.request.LoginRequest
 import com.example.smeb9716.model.request.RegisterRequest
+import com.example.smeb9716.model.request.UpdateProfileRequest
 import com.example.smeb9716.model.response.AddFavoriteProductResponse
 import com.example.smeb9716.model.response.BannerResponse
 import com.example.smeb9716.model.response.CategoryResponse
@@ -35,6 +37,28 @@ class ApiRepositoryImpl @Inject constructor(private val apiService: ApiService) 
     override suspend fun getUserDetail(uid: String): Data<GetUserResponse> {
         return safeCallApi {
             apiService.getUser(WholeApp.USER_ID)
+        }
+    }
+
+    override suspend fun updateUser(
+        uid: String,
+        request: UpdateProfileRequest,
+    ): Data<BaseResponse> {
+        return safeCallApi {
+            apiService.updateUser(uid, request)
+        }
+    }
+
+    override suspend fun changePassword(
+        uid: String,
+        oldPassword: String,
+        newPassword: String,
+    ): Data<BaseResponse> {
+        return safeCallApi {
+            apiService.changePassword(
+                uid,
+                ChangePasswordRequest(oldPassword = oldPassword, newPassword = newPassword)
+            )
         }
     }
 

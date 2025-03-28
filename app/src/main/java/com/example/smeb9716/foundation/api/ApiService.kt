@@ -3,9 +3,11 @@ package com.example.smeb9716.foundation.api
 import com.example.smeb9716.foundation.BaseResponse
 import com.example.smeb9716.model.User
 import com.example.smeb9716.model.request.AddFavoriteProductRequest
+import com.example.smeb9716.model.request.ChangePasswordRequest
 import com.example.smeb9716.model.request.DeleteFavoriteProductRequest
 import com.example.smeb9716.model.request.LoginRequest
 import com.example.smeb9716.model.request.RegisterRequest
+import com.example.smeb9716.model.request.UpdateProfileRequest
 import com.example.smeb9716.model.response.AddFavoriteProductResponse
 import com.example.smeb9716.model.response.BannerResponse
 import com.example.smeb9716.model.response.CategoryResponse
@@ -19,6 +21,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.HTTP
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -35,6 +38,17 @@ interface ApiService {
 
     @GET("api/user/{uid}")
     suspend fun getUser(@Path("uid") uid: String): Response<GetUserResponse>
+
+    @PUT("api/user/{uid}")
+    suspend fun updateUser(
+        @Path("uid") uid: String,
+        @Body request: UpdateProfileRequest,
+    ): Response<BaseResponse>
+
+    @POST("api/user/change-password/{uid}")
+    suspend fun changePassword(
+        @Path("uid") uid: String, @Body request: ChangePasswordRequest,
+    ): Response<BaseResponse>
 
     @GET("api/banner/get-all")
     suspend fun getBanners(
