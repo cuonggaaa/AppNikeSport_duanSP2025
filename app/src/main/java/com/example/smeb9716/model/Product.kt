@@ -16,7 +16,8 @@ data class Product(
     val updatedAt: String? = "",
     val reviewCount: Int? = 0,
     var isFavorite: Boolean? = false,
-) {
+    var size: String? = "",
+    ) {
     fun getDiscountedPrice(): Long {
         return (price?.minus(discount ?: 0) ?: 0).coerceAtLeast(0)
     }

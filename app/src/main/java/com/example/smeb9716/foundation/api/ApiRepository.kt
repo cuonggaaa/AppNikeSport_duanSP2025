@@ -11,9 +11,11 @@ import com.example.smeb9716.model.response.BannerResponse
 import com.example.smeb9716.model.response.CategoryResponse
 import com.example.smeb9716.model.response.FavoriteProductResponse
 import com.example.smeb9716.model.response.GetAllProductResponse
+import com.example.smeb9716.model.response.GetProductDetailResponse
 import com.example.smeb9716.model.response.GetUserResponse
 import com.example.smeb9716.model.response.GetVoucherResponse
 import com.example.smeb9716.model.response.LoginResponse
+import com.example.smeb9716.model.response.ProductReviewResponse
 
 interface ApiRepository {
     suspend fun login(loginRequest: LoginRequest): Data<LoginResponse>
@@ -30,6 +32,7 @@ interface ApiRepository {
         sort: ProductSortBy? = null,
         order: ProductSortMode? = null,
     ): Data<GetAllProductResponse>
+    suspend fun getProductDetail(productId: String): Data<GetProductDetailResponse>
     suspend fun getFavoriteProducts(uid: String): Data<FavoriteProductResponse>
     suspend fun addFavoriteProduct(
         userId: String, productId: String,
@@ -37,4 +40,5 @@ interface ApiRepository {
 
     suspend fun removeFavoriteProduct(productId: String, userId: String): Data<BaseResponse>
     suspend fun getVouchers(): Data<GetVoucherResponse>
+    suspend fun getProductReviews(productId: String): Data<ProductReviewResponse>
 }

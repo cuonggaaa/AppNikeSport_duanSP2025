@@ -11,9 +11,11 @@ import com.example.smeb9716.model.response.BannerResponse
 import com.example.smeb9716.model.response.CategoryResponse
 import com.example.smeb9716.model.response.FavoriteProductResponse
 import com.example.smeb9716.model.response.GetAllProductResponse
+import com.example.smeb9716.model.response.GetProductDetailResponse
 import com.example.smeb9716.model.response.GetUserResponse
 import com.example.smeb9716.model.response.GetVoucherResponse
 import com.example.smeb9716.model.response.LoginResponse
+import com.example.smeb9716.model.response.ProductReviewResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -57,6 +59,9 @@ interface ApiService {
         @Query("order") order: String? = null,
     ): Response<GetAllProductResponse>
 
+    @GET("api/product/{pid}")
+    suspend fun getProduct(@Path("pid") pid: String): Response<GetProductDetailResponse>
+
     @GET("api/product-fav/u/{uid}")
     suspend fun getFavoriteProducts(@Path("uid") uid: String): Response<FavoriteProductResponse>
 
@@ -69,4 +74,6 @@ interface ApiService {
     @HTTP(method = "DELETE", path = "api/product-fav", hasBody = true)
     suspend fun removeFavoriteProduct(@Body request: DeleteFavoriteProductRequest): Response<BaseResponse>
 
+    @GET("api/product-review/p/{pid}")
+    suspend fun getProductReview(@Path("pid") pid: String): Response<ProductReviewResponse>
 }

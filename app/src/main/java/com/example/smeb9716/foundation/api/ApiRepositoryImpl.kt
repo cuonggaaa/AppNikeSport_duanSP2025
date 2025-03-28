@@ -15,9 +15,11 @@ import com.example.smeb9716.model.response.BannerResponse
 import com.example.smeb9716.model.response.CategoryResponse
 import com.example.smeb9716.model.response.FavoriteProductResponse
 import com.example.smeb9716.model.response.GetAllProductResponse
+import com.example.smeb9716.model.response.GetProductDetailResponse
 import com.example.smeb9716.model.response.GetUserResponse
 import com.example.smeb9716.model.response.GetVoucherResponse
 import com.example.smeb9716.model.response.LoginResponse
+import com.example.smeb9716.model.response.ProductReviewResponse
 import javax.inject.Inject
 
 class ApiRepositoryImpl @Inject constructor(private val apiService: ApiService) : ApiRepository,
@@ -74,6 +76,12 @@ class ApiRepositoryImpl @Inject constructor(private val apiService: ApiService) 
         }
     }
 
+    override suspend fun getProductDetail(productId: String): Data<GetProductDetailResponse> {
+        return safeCallApi {
+            apiService.getProduct(productId)
+        }
+    }
+
     override suspend fun getFavoriteProducts(uid: String): Data<FavoriteProductResponse> {
         return safeCallApi {
             apiService.getFavoriteProducts(uid)
@@ -107,6 +115,12 @@ class ApiRepositoryImpl @Inject constructor(private val apiService: ApiService) 
     override suspend fun getVouchers(): Data<GetVoucherResponse> {
         return safeCallApi {
             apiService.getVouchers()
+        }
+    }
+
+    override suspend fun getProductReviews(productId: String): Data<ProductReviewResponse> {
+        return safeCallApi {
+            apiService.getProductReview(productId)
         }
     }
 }
