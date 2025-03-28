@@ -8,6 +8,8 @@ import com.example.smeb9716.fragment.ProfileFragment
 import com.example.smeb9716.utils.ext.replaceFragment
 import com.example.smeb9716.utils.views.ProgressDialog
 import dagger.hilt.android.AndroidEntryPoint
+import com.example.smeb9716.fragment.FavoriteFragment
+import com.example.smeb9716.fragment.GiftFragment
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() {
@@ -38,10 +40,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 }
 
                 R.id.bottomBarGift -> {
+                    setCurrentFragment(GiftFragment())
                     true
                 }
 
                 R.id.bottomBarFavorite -> {
+                    setCurrentFragment(FavoriteFragment())
                     true
                 }
 
