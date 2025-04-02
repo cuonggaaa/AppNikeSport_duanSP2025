@@ -91,15 +91,18 @@ class SearchFragment(private val screenMode: ScreenMode) : BaseFragment<Fragment
             }
         })
         binding.imvCart.setOnClickListener {
-
+            val fragment = CartsFragment()
+            addFragment(R.id.frameLayoutContainer, fragment, true)
         }
         binding.tvCartCount.setOnClickListener {
-
+            val fragment = CartsFragment()
+            addFragment(R.id.frameLayoutContainer, fragment, true)
         }
     }
 
     private fun onProductClick(product: Product) {
-
+        val fragment = ProductDetailFragment.newInstance(product.id)
+        addFragment(R.id.frameLayoutContainer, fragment, true)
     }
 
     private fun onFavoriteClick(product: Product, isFavorite: Boolean) {

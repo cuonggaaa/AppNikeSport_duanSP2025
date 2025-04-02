@@ -86,6 +86,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         recommendProductAdapter.setOnFavoriteClick(::onFavoriteClick)
         categoryAdapter.setOnCategoryClick(::onCategoryClick)
         voucherAdapter.setOnVoucherClick { voucher ->
+            // Handle voucher click event
+            val fragment = CartsFragment()
+            addFragment(R.id.frameLayoutContainer, fragment, true)
         }
 
         val voucherLayoutManager =
@@ -102,10 +105,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             refreshData()
         }
         binding.headerHome.imvCart.setOnClickListener {
-
+            val fragment = CartsFragment()
+            addFragment(R.id.frameLayoutContainer, fragment, true)
         }
         binding.headerHome.tvCartCount.setOnClickListener {
-
+            val fragment = CartsFragment()
+            addFragment(R.id.frameLayoutContainer, fragment, true)
         }
         binding.headerHome.svSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -125,6 +130,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         userViewModel.getCategories()
         userViewModel.getProducts()
         userViewModel.getVouchers()
+        userViewModel.getCartCount()
     }
 
     override fun initObservers() {
@@ -194,7 +200,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun onProductClick(product: Product) {
-
+        val fragment = ProductDetailFragment.newInstance(product.id)
+        addFragment(R.id.frameLayoutContainer, fragment, true)
     }
 
     private fun onFavoriteClick(product: Product, isFavorite: Boolean) {

@@ -12,6 +12,7 @@ import com.example.smeb9716.model.response.BannerResponse
 import com.example.smeb9716.model.response.CategoryResponse
 import com.example.smeb9716.model.response.FavoriteProductResponse
 import com.example.smeb9716.model.response.GetAllProductResponse
+import com.example.smeb9716.model.response.GetCartsResponse
 import com.example.smeb9716.model.response.GetProductDetailResponse
 import com.example.smeb9716.model.response.GetUserResponse
 import com.example.smeb9716.model.response.GetVoucherResponse
@@ -49,4 +50,15 @@ interface ApiRepository {
     suspend fun removeFavoriteProduct(productId: String, userId: String): Data<BaseResponse>
     suspend fun getVouchers(): Data<GetVoucherResponse>
     suspend fun getProductReviews(productId: String): Data<ProductReviewResponse>
+    suspend fun getCarts(userId: String): Data<GetCartsResponse>
+    suspend fun addCart(
+        productId: String, quantity: Int, userId: String,
+    ): Data<BaseResponse>
+
+    suspend fun updateCart(
+        cartId: String,
+        quantity: Int,
+    ): Data<BaseResponse>
+
+    suspend fun deleteCart(cartId: String): Data<BaseResponse>
 }

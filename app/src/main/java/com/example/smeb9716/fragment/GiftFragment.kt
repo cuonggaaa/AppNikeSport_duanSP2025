@@ -32,7 +32,10 @@ class GiftFragment : BaseFragment<FragmentGiftBinding>() {
     }
 
     private fun onVoucherClick(voucher: Voucher) {
-
+        val fragment = CartsFragment()
+        addFragment(
+            R.id.frameLayoutContainer, fragment, true
+        )
     }
 
     override fun initEvents() {
@@ -45,7 +48,10 @@ class GiftFragment : BaseFragment<FragmentGiftBinding>() {
     }
 
     private fun openCart() {
-
+        val fragment = CartsFragment()
+        addFragment(
+            R.id.frameLayoutContainer, fragment, true
+        )
     }
 
     override fun initObservers() {

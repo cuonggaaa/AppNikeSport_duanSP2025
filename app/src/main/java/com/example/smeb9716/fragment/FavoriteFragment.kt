@@ -41,7 +41,10 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
             viewModel.removeFavoriteProduct(it)
         }
         binding.imvCart.setOnClickListener {
-
+            val fragment = CartsFragment()
+            addFragment(
+                R.id.frameLayoutContainer, fragment, true
+            )
         }
     }
 
