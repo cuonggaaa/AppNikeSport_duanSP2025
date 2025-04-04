@@ -69,7 +69,10 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
         }
 
         binding.imvCart.setOnClickListener {
-
+            val fragment = CartsFragment()
+            addFragment(
+                R.id.frameLayoutContainer, fragment, true, CartsFragment::class.java.simpleName
+            )
         }
 
         binding.btnAddToCart.setOnClickListener {

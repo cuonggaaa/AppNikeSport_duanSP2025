@@ -38,7 +38,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             addFragment(R.id.frameLayoutContainer, fragment, true)
         }
         binding.imvCart.setOnClickListener {
-
+            val fragment = CartsFragment()
+            addFragment(R.id.frameLayoutContainer, fragment, true)
         }
         binding.containerChangePassword.setOnClickListener {
             val fragment = ChangePasswordSheet()

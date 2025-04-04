@@ -135,10 +135,37 @@ class ProductDetailViewModel @Inject constructor(
     }
 
     fun getCartCount() {
-
+        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
+            showLoading(true)
+            val response = apiRepository.getCarts(WholeApp.USER_ID)
+            showLoading(false)
+            handleResponse(response = response, onSuccess = {
+                // Handle success response
+                WholeApp.cartCount.postValue(it?.data?.size ?: 0)
+            }, onError = { errorMsg ->
+                // Handle error response
+                WholeApp.cartCount.postValue(0)
+            })
+        }
     }
 
     fun addCart(product: Product, quantity: Int) {
-
+        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
+            showLoading(true)
+            val response = apiRepository.addCart(
+                userId = WholeApp.USER_ID, productId = product.id, quantity = quantity
+            )
+            showLoading(false)
+            handleResponse(response = response, onSuccess = {
+                // Handle success response
+                WholeApp.cartCount.postValue(WholeApp.cartCount.value?.plus(1))
+                addCartSuccess.postValue(true)
+            }, onError = { errorMsg ->
+                // Handle error response
+                handleMessage(
+                    message = errorMsg ?: "Lỗi không xác định", bgType = BGType.BG_TYPE_WARNING
+                )
+            })
+        }
     }
 }

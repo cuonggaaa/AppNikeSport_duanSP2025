@@ -3,13 +3,13 @@ package com.example.smeb9716
 import androidx.fragment.app.Fragment
 import com.example.smeb9716.databinding.ActivityMainBinding
 import com.example.smeb9716.foundation.BaseActivity
+import com.example.smeb9716.fragment.FavoriteFragment
+import com.example.smeb9716.fragment.GiftFragment
 import com.example.smeb9716.fragment.HomeFragment
 import com.example.smeb9716.fragment.ProfileFragment
 import com.example.smeb9716.utils.ext.replaceFragment
 import com.example.smeb9716.utils.views.ProgressDialog
 import dagger.hilt.android.AndroidEntryPoint
-import com.example.smeb9716.fragment.FavoriteFragment
-import com.example.smeb9716.fragment.GiftFragment
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() {
@@ -48,7 +48,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     setCurrentFragment(FavoriteFragment())
                     true
                 }
-
                 R.id.bottomBarProfile -> {
                     setCurrentFragment(ProfileFragment())
                     true

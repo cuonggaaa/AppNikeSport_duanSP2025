@@ -37,6 +37,17 @@ class GiftViewModel @Inject constructor(
     }
 
     fun getCartCount() {
-
+        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
+            showLoading(true)
+            val response = apiRepository.getCarts(WholeApp.USER_ID)
+            showLoading(false)
+            handleResponse(response = response, onSuccess = {
+                // Handle success response
+                WholeApp.cartCount.postValue(it?.data?.size ?: 0)
+            }, onError = { errorMsg ->
+                // Handle error response
+                WholeApp.cartCount.postValue(0)
+            })
+        }
     }
 }
