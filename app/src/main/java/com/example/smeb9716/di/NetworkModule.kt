@@ -19,7 +19,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-    private const val BASE_URL = "http://192.168.1.135:3000/"
+    private const val BASE_URL = "http://192.168.1.9:3000/"
     private const val KEY_AUTHORIZATION = "Authorization"
     private const val TOKEN_PREFIX = "Bearer "
 

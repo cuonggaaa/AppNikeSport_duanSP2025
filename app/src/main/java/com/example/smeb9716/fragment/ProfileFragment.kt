@@ -86,4 +86,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     override fun initViews(binding: FragmentProfileBinding) {
         viewModel.getProfile()
     }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getProfile()
+    }
 }

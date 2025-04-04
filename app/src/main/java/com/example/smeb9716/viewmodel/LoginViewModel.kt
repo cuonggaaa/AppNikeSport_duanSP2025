@@ -34,8 +34,15 @@ class LoginViewModel @Inject constructor(
             showLoading(false)
 
             handleResponse(response = response, onSuccess = {
-                _loginResponse.postValue(it)
-                WholeApp.USER_ID = it?.user?.id ?: ""
+                if (it?.success == false) {
+                    isSplashLoginFail.postValue(true)
+                    handleMessage(
+                        message = it.message ?: "Lỗi không xác định", bgType = BGType.BG_TYPE_ERROR
+                    )
+                } else {
+                    _loginResponse.postValue(it)
+                    WholeApp.USER_ID = it?.user?.id ?: ""
+                }
             }, onError = { errorMsg ->
                 // Handle error response
                 isSplashLoginFail.postValue(true)
