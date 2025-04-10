@@ -7,12 +7,14 @@ import com.example.smeb9716.model.request.AddFavoriteProductRequest
 import com.example.smeb9716.model.request.ChangePasswordRequest
 import com.example.smeb9716.model.request.DeleteFavoriteProductRequest
 import com.example.smeb9716.model.request.LoginRequest
+import com.example.smeb9716.model.request.OrderRequest
 import com.example.smeb9716.model.request.RegisterRequest
 import com.example.smeb9716.model.request.UpdateCartRequest
 import com.example.smeb9716.model.request.UpdateProfileRequest
 import com.example.smeb9716.model.response.AddFavoriteProductResponse
 import com.example.smeb9716.model.response.BannerResponse
 import com.example.smeb9716.model.response.CategoryResponse
+import com.example.smeb9716.model.response.CreateOrderResponse
 import com.example.smeb9716.model.response.FavoriteProductResponse
 import com.example.smeb9716.model.response.GetAllProductResponse
 import com.example.smeb9716.model.response.GetCartsResponse
@@ -20,6 +22,7 @@ import com.example.smeb9716.model.response.GetProductDetailResponse
 import com.example.smeb9716.model.response.GetUserResponse
 import com.example.smeb9716.model.response.GetVoucherResponse
 import com.example.smeb9716.model.response.LoginResponse
+import com.example.smeb9716.model.response.PaymentMethodResponse
 import com.example.smeb9716.model.response.ProductReviewResponse
 import retrofit2.Response
 import retrofit2.http.Body
@@ -109,4 +112,10 @@ interface ApiService {
 
     @DELETE("api/cart/{cartData}")
     suspend fun deleteCart(@Path("cartData") cartId: String): Response<BaseResponse>
+
+    @GET("api/pay-method/get-all")
+    suspend fun getPaymentMethods(): Response<PaymentMethodResponse>
+
+    @POST("api/order")
+    suspend fun createOrder(@Body request: OrderRequest): Response<CreateOrderResponse>
 }
