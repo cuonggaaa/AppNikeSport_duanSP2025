@@ -3,25 +3,34 @@ package com.example.smeb9716.foundation.api
 import com.example.smeb9716.foundation.BaseRepository
 import com.example.smeb9716.foundation.BaseResponse
 import com.example.smeb9716.foundation.Data
+import com.example.smeb9716.model.PaymentMethod
+import com.example.smeb9716.model.Voucher
 import com.example.smeb9716.model.WholeApp
 import com.example.smeb9716.model.filter.ProductSortBy
 import com.example.smeb9716.model.filter.ProductSortMode
+import com.example.smeb9716.model.request.AddCartRequest
 import com.example.smeb9716.model.request.AddFavoriteProductRequest
 import com.example.smeb9716.model.request.ChangePasswordRequest
 import com.example.smeb9716.model.request.DeleteFavoriteProductRequest
 import com.example.smeb9716.model.request.LoginRequest
 import com.example.smeb9716.model.request.RegisterRequest
+import com.example.smeb9716.model.request.UpdateCartRequest
 import com.example.smeb9716.model.request.UpdateProfileRequest
 import com.example.smeb9716.model.response.AddFavoriteProductResponse
 import com.example.smeb9716.model.response.BannerResponse
 import com.example.smeb9716.model.response.CategoryResponse
+import com.example.smeb9716.model.response.CreateOrderResponse
 import com.example.smeb9716.model.response.FavoriteProductResponse
 import com.example.smeb9716.model.response.GetAllProductResponse
+import com.example.smeb9716.model.response.GetCartsResponse
 import com.example.smeb9716.model.response.GetProductDetailResponse
 import com.example.smeb9716.model.response.GetUserResponse
 import com.example.smeb9716.model.response.GetVoucherResponse
 import com.example.smeb9716.model.response.LoginResponse
+import com.example.smeb9716.model.response.PaymentMethodResponse
 import com.example.smeb9716.model.response.ProductReviewResponse
+import com.example.smeb9716.model.Cart
+import com.example.smeb9716.model.request.OrderRequest
 import javax.inject.Inject
 
 class ApiRepositoryImpl @Inject constructor(private val apiService: ApiService) : ApiRepository,
@@ -147,4 +156,69 @@ class ApiRepositoryImpl @Inject constructor(private val apiService: ApiService) 
             apiService.getProductReview(productId)
         }
     }
+
+
+    override suspend fun getCarts(userId: String): Data<GetCartsResponse> {
+        return safeCallApi {
+            apiService.getCarts(userId)
+        }
+    }
+
+    override suspend fun addCart(
+        productId: String, quantity: Int, userId: String,
+    ): Data<BaseResponse> {
+        return safeCallApi {
+            apiService.addCart(
+                AddCartRequest(
+                    productId = productId, quantity = quantity, userId = userId
+                )
+            )
+        }
+    }
+
+    override suspend fun updateCart(cartId: String, quantity: Int): Data<BaseResponse> {
+        return safeCallApi {
+            apiService.updateCart(
+                cartId = cartId, request = UpdateCartRequest(quantity = quantity)
+            )
+        }
+    }
+
+    override suspend fun deleteCart(cartId: String): Data<BaseResponse> {
+        return safeCallApi {
+            apiService.deleteCart(cartId)
+        }
+    }
+
+    override suspend fun getPaymentMethods(): Data<PaymentMethodResponse> {
+        return safeCallApi(mapper = { paymentMethods ->
+            paymentMethods.data.forEach { paymentMethod ->
+                paymentMethod.setPaymentMethodCode()
+            }
+            paymentMethods
+        }) {
+            apiService.getPaymentMethods()
+        }
+    }
+
+    override suspend fun createOrder(
+        userId: String,
+        carts: List<Cart>,
+        paymentMethod: PaymentMethod,
+        voucher: Voucher?,
+        address: String?
+    ): Data<CreateOrderResponse> {
+        return safeCallApi {
+            apiService.createOrder(
+                OrderRequest(
+                    userId = userId,
+                    cartId = carts.map { it.id },
+                    paymentMethodId = paymentMethod.id,
+                    voucherId = voucher?.id,
+                    address = address
+                )
+            )
+        }
+    }
+
 }

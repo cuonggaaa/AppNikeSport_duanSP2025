@@ -2,6 +2,8 @@ package com.example.smeb9716.foundation.api
 
 import com.example.smeb9716.foundation.BaseResponse
 import com.example.smeb9716.foundation.Data
+import com.example.smeb9716.model.PaymentMethod
+import com.example.smeb9716.model.Voucher
 import com.example.smeb9716.model.filter.ProductSortBy
 import com.example.smeb9716.model.filter.ProductSortMode
 import com.example.smeb9716.model.request.LoginRequest
@@ -10,13 +12,17 @@ import com.example.smeb9716.model.request.UpdateProfileRequest
 import com.example.smeb9716.model.response.AddFavoriteProductResponse
 import com.example.smeb9716.model.response.BannerResponse
 import com.example.smeb9716.model.response.CategoryResponse
+import com.example.smeb9716.model.response.CreateOrderResponse
 import com.example.smeb9716.model.response.FavoriteProductResponse
 import com.example.smeb9716.model.response.GetAllProductResponse
+import com.example.smeb9716.model.response.GetCartsResponse
 import com.example.smeb9716.model.response.GetProductDetailResponse
 import com.example.smeb9716.model.response.GetUserResponse
 import com.example.smeb9716.model.response.GetVoucherResponse
 import com.example.smeb9716.model.response.LoginResponse
+import com.example.smeb9716.model.response.PaymentMethodResponse
 import com.example.smeb9716.model.response.ProductReviewResponse
+import com.example.smeb9716.model.Cart
 
 interface ApiRepository {
     suspend fun login(loginRequest: LoginRequest): Data<LoginResponse>
@@ -49,4 +55,23 @@ interface ApiRepository {
     suspend fun removeFavoriteProduct(productId: String, userId: String): Data<BaseResponse>
     suspend fun getVouchers(): Data<GetVoucherResponse>
     suspend fun getProductReviews(productId: String): Data<ProductReviewResponse>
+    suspend fun getCarts(userId: String): Data<GetCartsResponse>
+    suspend fun addCart(
+        productId: String, quantity: Int, userId: String,
+    ): Data<BaseResponse>
+
+    suspend fun updateCart(
+        cartId: String,
+        quantity: Int,
+    ): Data<BaseResponse>
+
+    suspend fun deleteCart(cartId: String): Data<BaseResponse>
+    suspend fun getPaymentMethods(): Data<PaymentMethodResponse>
+    suspend fun createOrder(
+        userId: String,
+        carts: List<Cart>,
+        paymentMethod: PaymentMethod,
+        voucher: Voucher? = null,
+        address: String? = null,
+    ): Data<CreateOrderResponse>
 }
