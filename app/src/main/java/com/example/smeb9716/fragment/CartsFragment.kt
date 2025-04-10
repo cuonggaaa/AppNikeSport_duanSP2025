@@ -35,9 +35,6 @@ class CartsFragment : BaseFragment<FragmentCartsBinding>() {
     }
 
     override fun initEvents() {
-        binding.btnOrder.setOnClickListener {
-
-        }
         binding.cbSelectAll.setOnCheckedChangeListener { _, isChecked ->
             viewModel.selectAll(isChecked)
         }
@@ -50,7 +47,13 @@ class CartsFragment : BaseFragment<FragmentCartsBinding>() {
             }
         })
         binding.btnOrder.setOnClickListener {
-
+            val selectedCarts = viewModel.getSelectedCarts()
+            val fragment = OrderFragment(selectedCarts)
+            addFragment(
+                containerId = R.id.frameLayoutContainer,
+                fragment = fragment,
+                addToBackStack = true
+            )
         }
     }
 
