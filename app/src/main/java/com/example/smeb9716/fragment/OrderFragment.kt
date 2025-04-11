@@ -117,7 +117,10 @@ class OrderFragment(private val carts: List<Cart>) : BaseFragment<FragmentOrderB
                 Timber.d("Order: $it")
                 Timber.d("Payment method: ${viewModel.selectedPaymentMethod.value}")
                 if (viewModel.selectedPaymentMethod.value?.paymentMethod == PaymentMethodCode.VNPAY) {
-
+                    if (it.url != null) {
+                        val fragment = VNPayFragment(it.url)
+                        addFragment(R.id.frameLayoutContainer, fragment, addToBackStack = true)
+                    }
                 } else {
                     Toasty.success(requireContext(), "Đặt hàng thành công").show()
                     goBackUtilHomeFragment()
