@@ -9,6 +9,7 @@ import com.example.smeb9716.model.request.DeleteFavoriteProductRequest
 import com.example.smeb9716.model.request.LoginRequest
 import com.example.smeb9716.model.request.OrderRequest
 import com.example.smeb9716.model.request.RegisterRequest
+import com.example.smeb9716.model.request.SendProductReviewRequest
 import com.example.smeb9716.model.request.UpdateCartRequest
 import com.example.smeb9716.model.request.UpdateProfileRequest
 import com.example.smeb9716.model.response.AddFavoriteProductResponse
@@ -17,7 +18,9 @@ import com.example.smeb9716.model.response.CategoryResponse
 import com.example.smeb9716.model.response.CreateOrderResponse
 import com.example.smeb9716.model.response.FavoriteProductResponse
 import com.example.smeb9716.model.response.GetAllProductResponse
+import com.example.smeb9716.model.response.GetCartDetailResponse
 import com.example.smeb9716.model.response.GetCartsResponse
+import com.example.smeb9716.model.response.GetOrderResponse
 import com.example.smeb9716.model.response.GetProductDetailResponse
 import com.example.smeb9716.model.response.GetUserResponse
 import com.example.smeb9716.model.response.GetVoucherResponse
@@ -67,6 +70,7 @@ interface ApiService {
     @GET("api/category/get-all")
     suspend fun getCategories(
         @Query("page") page: Int = 1, @Query("limit") limit: Int = 10,
+
         ): Response<CategoryResponse>
 
     @GET("api/product/get-all")
@@ -86,21 +90,26 @@ interface ApiService {
     @GET("api/product-fav/u/{uid}")
     suspend fun getFavoriteProducts(@Path("uid") uid: String): Response<FavoriteProductResponse>
 
-    @GET("api/voucher/get-all")
-    suspend fun getVouchers(): Response<GetVoucherResponse>
-
     @POST("api/product-fav")
     suspend fun addFavoriteProduct(@Body request: AddFavoriteProductRequest): Response<AddFavoriteProductResponse>
 
     @HTTP(method = "DELETE", path = "api/product-fav", hasBody = true)
     suspend fun removeFavoriteProduct(@Body request: DeleteFavoriteProductRequest): Response<BaseResponse>
 
+    @POST("api/product-review")
+    suspend fun addProductReview(@Body request: SendProductReviewRequest): Response<BaseResponse>
+
+    @GET("api/voucher/get-all")
+    suspend fun getVouchers(): Response<GetVoucherResponse>
+
     @GET("api/product-review/p/{pid}")
     suspend fun getProductReview(@Path("pid") pid: String): Response<ProductReviewResponse>
 
-
     @GET("api/cart/u/{uid}")
     suspend fun getCarts(@Path("uid") uid: String): Response<GetCartsResponse>
+
+    @GET("api/cart/{cartData}")
+    suspend fun getCartDetail(@Path("cartData") cartId: String): Response<GetCartDetailResponse>
 
     @POST("api/cart")
     suspend fun addCart(@Body request: AddCartRequest): Response<BaseResponse>
@@ -118,4 +127,10 @@ interface ApiService {
 
     @POST("api/order")
     suspend fun createOrder(@Body request: OrderRequest): Response<CreateOrderResponse>
+
+    @GET("api/order/u/{uid}")
+    suspend fun getOrders(@Path("uid") uid: String): Response<GetOrderResponse>
+
+    @PUT("api/order/cancelled/{orderId}")
+    suspend fun cancelOrder(@Path("orderId") orderId: String): Response<BaseResponse>
 }

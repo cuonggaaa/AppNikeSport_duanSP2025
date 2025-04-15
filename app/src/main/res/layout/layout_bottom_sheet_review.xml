@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_sheet"
+    android:elevation="@dimen/margin_4"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/margin_16"
+    android:paddingTop="8dp"
+    android:paddingBottom="32dp">
+
+    <View
+        android:layout_width="80dp"
+        android:layout_height="3dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/gray500" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_15"
+        android:text="Chọn sản phẩm"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/rl_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16"
+        android:background="@drawable/bg_payment_method_dropdown"
+        app:layout_constraintTop_toBottomOf="@id/tv_payment_method_label">
+
+        <Spinner
+            android:id="@+id/sp_product"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/margin_8"
+            android:background="#00000000"
+            android:gravity="center"
+            android:spinnerMode="dropdown" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:src="@drawable/ic_arrow_drop_down" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_15"
+        android:text="Đánh giá"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_15"
+        android:drawableStart="@drawable/ic_star"
+        android:text="2.5"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.slider.Slider
+        android:id="@+id/sliderRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16"
+        android:stepSize="1"
+        android:value="1"
+        android:valueFrom="1"
+        android:valueTo="5"
+        app:haloColor="@color/secondary"
+        app:thumbColor="@color/secondary"
+        app:thumbRadius="8dp"
+        app:thumbStrokeColor="@color/secondary"
+        app:thumbStrokeWidth="2dp"
+        app:trackColorActive="@color/secondary" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_15"
+        android:fontFamily="@font/montserrat_semi_bold"
+        android:text="Bình luận"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_16" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilComment"
+        style="@style/CustomTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_medium"
+        android:hint="Viết bình luận"
+        app:boxStrokeColor="@color/primary"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
+        app:hintTextColor="@color/primary"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtComment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/montserrat_medium"
+            android:imeOptions="actionSend"
+            android:inputType="text"
+            android:textSize="@dimen/text_size_14" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16"
+        android:background="@drawable/bg_add_cart_btn"
+        android:text="Gửi"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

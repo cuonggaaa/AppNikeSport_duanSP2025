@@ -3,6 +3,7 @@ package com.example.smeb9716.foundation.api
 import com.example.smeb9716.foundation.BaseRepository
 import com.example.smeb9716.foundation.BaseResponse
 import com.example.smeb9716.foundation.Data
+import com.example.smeb9716.model.Cart
 import com.example.smeb9716.model.PaymentMethod
 import com.example.smeb9716.model.Voucher
 import com.example.smeb9716.model.WholeApp
@@ -13,7 +14,9 @@ import com.example.smeb9716.model.request.AddFavoriteProductRequest
 import com.example.smeb9716.model.request.ChangePasswordRequest
 import com.example.smeb9716.model.request.DeleteFavoriteProductRequest
 import com.example.smeb9716.model.request.LoginRequest
+import com.example.smeb9716.model.request.OrderRequest
 import com.example.smeb9716.model.request.RegisterRequest
+import com.example.smeb9716.model.request.SendProductReviewRequest
 import com.example.smeb9716.model.request.UpdateCartRequest
 import com.example.smeb9716.model.request.UpdateProfileRequest
 import com.example.smeb9716.model.response.AddFavoriteProductResponse
@@ -22,15 +25,15 @@ import com.example.smeb9716.model.response.CategoryResponse
 import com.example.smeb9716.model.response.CreateOrderResponse
 import com.example.smeb9716.model.response.FavoriteProductResponse
 import com.example.smeb9716.model.response.GetAllProductResponse
+import com.example.smeb9716.model.response.GetCartDetailResponse
 import com.example.smeb9716.model.response.GetCartsResponse
+import com.example.smeb9716.model.response.GetOrderResponse
 import com.example.smeb9716.model.response.GetProductDetailResponse
 import com.example.smeb9716.model.response.GetUserResponse
 import com.example.smeb9716.model.response.GetVoucherResponse
 import com.example.smeb9716.model.response.LoginResponse
 import com.example.smeb9716.model.response.PaymentMethodResponse
 import com.example.smeb9716.model.response.ProductReviewResponse
-import com.example.smeb9716.model.Cart
-import com.example.smeb9716.model.request.OrderRequest
 import javax.inject.Inject
 
 class ApiRepositoryImpl @Inject constructor(private val apiService: ApiService) : ApiRepository,
@@ -145,6 +148,21 @@ class ApiRepositoryImpl @Inject constructor(private val apiService: ApiService) 
         }
     }
 
+    override suspend fun reviewProduct(
+        productId: String,
+        userId: String,
+        rating: Double,
+        content: String,
+    ): Data<BaseResponse> {
+        return safeCallApi {
+            apiService.addProductReview(
+                SendProductReviewRequest(
+                    productId = productId, userId = userId, rating = rating, reviewText = content
+                )
+            )
+        }
+    }
+
     override suspend fun getVouchers(): Data<GetVoucherResponse> {
         return safeCallApi {
             apiService.getVouchers()
@@ -156,7 +174,6 @@ class ApiRepositoryImpl @Inject constructor(private val apiService: ApiService) 
             apiService.getProductReview(productId)
         }
     }
-
 
     override suspend fun getCarts(userId: String): Data<GetCartsResponse> {
         return safeCallApi {
@@ -187,6 +204,12 @@ class ApiRepositoryImpl @Inject constructor(private val apiService: ApiService) 
     override suspend fun deleteCart(cartId: String): Data<BaseResponse> {
         return safeCallApi {
             apiService.deleteCart(cartId)
+        }
+    }
+
+    override suspend fun getCartDetail(cartId: String): Data<GetCartDetailResponse> {
+        return safeCallApi {
+            apiService.getCartDetail(cartId)
         }
     }
 
@@ -221,4 +244,20 @@ class ApiRepositoryImpl @Inject constructor(private val apiService: ApiService) 
         }
     }
 
+    override suspend fun getOrders(userId: String): Data<GetOrderResponse> {
+        return safeCallApi(mapper = { orders ->
+            orders.data.forEach { order ->
+                order.paymentMethodId?.setPaymentMethodCode()
+            }
+            orders
+        }) {
+            apiService.getOrders(userId)
+        }
+    }
+
+    override suspend fun cancelOrder(orderId: String): Data<BaseResponse> {
+        return safeCallApi {
+            apiService.cancelOrder(orderId)
+        }
+    }
 }

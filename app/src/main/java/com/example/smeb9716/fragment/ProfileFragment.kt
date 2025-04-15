@@ -46,7 +46,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             fragment.show(childFragmentManager, fragment.tag)
         }
         binding.containerOrders.setOnClickListener {
-
+            val fragment = OrderHistoryFragment()
+            addFragment(R.id.frameLayoutContainer, fragment, true)
         }
     }
 

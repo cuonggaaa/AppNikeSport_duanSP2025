@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="@dimen/margin_8"
+    android:background="@color/white"
+    android:paddingHorizontal="@dimen/margin_16"
+    android:paddingVertical="@dimen/margin_8">
+
+    <RelativeLayout
+        android:id="@+id/rl_order_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_order_id_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="Order ID "
+            android:textSize="@dimen/text_size_16"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_order_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@id/tv_order_id_title"
+            android:text="#80e2fc"
+            android:textSize="@dimen/text_size_16" />
+
+        <TextView
+            android:id="@+id/tv_order_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:text="2021-07-01"
+            android:textSize="@dimen/text_size_14" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_order_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_8"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="Address: 123, ABC, XYZ"
+        android:textSize="@dimen/text_size_14"
+        app:layout_constraintTop_toBottomOf="@id/rl_order_title" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/margin_8"
+        app:layout_constraintTop_toBottomOf="@id/tv_order_address" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_order_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_8"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/divider1"
+        tools:itemCount="3"
+        tools:listitem="@layout/item_product_order" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/margin_8"
+        app:layout_constraintTop_toBottomOf="@id/rv_order_detail" />
+
+    <RelativeLayout
+        android:id="@+id/rl_order_total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_8"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/divider2">
+
+        <TextView
+            android:id="@+id/tv_order_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:text="10,000,000 VND"
+            android:textSize="@dimen/text_size_16" />
+
+        <TextView
+            android:id="@+id/tv_order_total_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:layout_toStartOf="@id/tv_order_total"
+            android:text="Tổng "
+            android:textSize="@dimen/text_size_16"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_order_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="Pending"
+            android:textSize="@dimen/text_size_16"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_order_total"
+            android:layout_toStartOf="@id/btn_review"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginBottom="@dimen/margin_8"
+            android:background="@drawable/bg_add_cart_btn"
+            android:paddingHorizontal="16dp"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:text="Hủy"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_order_total"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginBottom="@dimen/margin_8"
+            android:background="@drawable/bg_add_cart_btn"
+            android:paddingHorizontal="16dp"
+            android:text="Đánh giá"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
