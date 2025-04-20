@@ -9,6 +9,7 @@
     <string name="profile">Cá nhân</string>
     <string name="login">Đăng nhập</string>
     <string name="enter_email">Nhập email</string>
+    <string name="notification">Thông báo</string>
     <string name="enter_password">Nhập mật khẩu</string>
     <string name="register">Đăng ký</string>
     <string name="have_an_account">Bạn chưa có tài khoản!</string>

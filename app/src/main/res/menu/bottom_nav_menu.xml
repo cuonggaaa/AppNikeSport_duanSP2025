@@ -12,10 +12,10 @@
         android:id="@+id/bottomBarFavorite"
         android:title="Yêu thích"
         android:icon="@drawable/selector_favorite_main"/>
-<!--    <item-->
-<!--        android:id="@+id/bottomBarNotification"-->
-<!--        android:title="@string/notification"-->
-<!--        android:icon="@drawable/selector_bookmark_main"/>-->
+    <item
+        android:id="@+id/bottomBarNotification"
+        android:title="@string/notification"
+        android:icon="@drawable/selector_bookmark_main"/>
 
     <item
         android:id="@+id/bottomBarProfile"
