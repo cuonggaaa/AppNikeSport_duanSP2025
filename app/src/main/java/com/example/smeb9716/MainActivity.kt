@@ -6,7 +6,6 @@ import com.example.smeb9716.foundation.BaseActivity
 import com.example.smeb9716.fragment.FavoriteFragment
 import com.example.smeb9716.fragment.GiftFragment
 import com.example.smeb9716.fragment.HomeFragment
-import com.example.smeb9716.fragment.NotificationFragment
 import com.example.smeb9716.fragment.ProfileFragment
 import com.example.smeb9716.utils.ext.replaceFragment
 import com.example.smeb9716.utils.views.ProgressDialog
@@ -47,10 +46,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
                 R.id.bottomBarFavorite -> {
                     setCurrentFragment(FavoriteFragment())
-                    true
-                }
-                R.id.bottomBarNotification -> {
-                    setCurrentFragment(NotificationFragment())
                     true
                 }
                 R.id.bottomBarProfile -> {

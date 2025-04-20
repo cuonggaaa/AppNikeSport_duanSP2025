@@ -20,7 +20,6 @@ import com.example.smeb9716.model.response.FavoriteProductResponse
 import com.example.smeb9716.model.response.GetAllProductResponse
 import com.example.smeb9716.model.response.GetCartDetailResponse
 import com.example.smeb9716.model.response.GetCartsResponse
-import com.example.smeb9716.model.response.GetNotificationResponse
 import com.example.smeb9716.model.response.GetOrderResponse
 import com.example.smeb9716.model.response.GetProductDetailResponse
 import com.example.smeb9716.model.response.GetUserResponse
@@ -135,6 +134,4 @@ interface ApiService {
     @PUT("api/order/cancelled/{orderId}")
     suspend fun cancelOrder(@Path("orderId") orderId: String): Response<BaseResponse>
 
-    @GET("api/noti/u/{uid}")
-    suspend fun getNotifications(@Path("uid") uid: String): Response<GetNotificationResponse>
 }

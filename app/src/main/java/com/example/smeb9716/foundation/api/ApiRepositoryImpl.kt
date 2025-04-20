@@ -27,7 +27,6 @@ import com.example.smeb9716.model.response.FavoriteProductResponse
 import com.example.smeb9716.model.response.GetAllProductResponse
 import com.example.smeb9716.model.response.GetCartDetailResponse
 import com.example.smeb9716.model.response.GetCartsResponse
-import com.example.smeb9716.model.response.GetNotificationResponse
 import com.example.smeb9716.model.response.GetOrderResponse
 import com.example.smeb9716.model.response.GetProductDetailResponse
 import com.example.smeb9716.model.response.GetUserResponse
@@ -260,12 +259,6 @@ class ApiRepositoryImpl @Inject constructor(private val apiService: ApiService) 
     override suspend fun cancelOrder(orderId: String): Data<BaseResponse> {
         return safeCallApi {
             apiService.cancelOrder(orderId)
-        }
-    }
-
-    override suspend fun getNotifications(userId: String): Data<GetNotificationResponse> {
-        return safeCallApi {
-            apiService.getNotifications(userId)
         }
     }
 }
