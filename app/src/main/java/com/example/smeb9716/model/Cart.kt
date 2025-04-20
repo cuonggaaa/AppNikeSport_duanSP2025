@@ -9,7 +9,8 @@ data class Cart(
     var quantity: Int,
     val createdAt: String? = "",
     val updatedAt: String? = "",
-    var selected: Boolean? = false
+    var selected: Boolean? = false,
+    var size: String? = "",
 ) {
     fun toCartOrder(): CartOrder {
         return CartOrder(
@@ -19,7 +20,8 @@ data class Cart(
             quantity = quantity,
             createdAt = createdAt,
             updatedAt = updatedAt,
-            selected = selected
+            selected = selected,
+            size = size ?: "",
         )
     }
 }
