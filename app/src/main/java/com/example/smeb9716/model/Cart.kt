@@ -29,6 +29,7 @@ data class CartOrder(
     val userId: CartUserId,
     val productId: Product,
     var quantity: Int,
+    var size: String = "",
     val createdAt: String? = "",
     val updatedAt: String? = "",
     var selected: Boolean? = false

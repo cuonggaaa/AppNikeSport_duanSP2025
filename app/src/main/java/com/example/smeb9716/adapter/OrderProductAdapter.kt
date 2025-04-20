@@ -23,6 +23,7 @@ data class OrderProductAdapter(val carts: List<CartOrder>) :
                 .into(binding.imvThumbnail)
 
             binding.tvQuantity.text = "x${cart.quantity}"
+            binding.tvSize.text = "Size: ${cart.size}"
         }
     }
 

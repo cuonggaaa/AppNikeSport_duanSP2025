@@ -69,6 +69,7 @@ interface ApiRepository {
     suspend fun getCarts(userId: String): Data<GetCartsResponse>
     suspend fun addCart(
         productId: String, quantity: Int, userId: String,
+        size: String,
     ): Data<BaseResponse>
 
     suspend fun updateCart(

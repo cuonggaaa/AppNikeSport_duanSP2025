@@ -48,7 +48,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:weightSum="2">
+            android:weightSum="3">
 
             <TextView
                 android:id="@+id/tv_quantity"
@@ -58,6 +58,16 @@
                 android:gravity="center"
                 android:textSize="16sp"
                 tools:text="x99" />
+
+            <TextView
+                android:id="@+id/tv_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:layout_marginStart="@dimen/margin_32"
+                tools:text="Size: L" />
 
             <TextView
                 android:id="@+id/tv_price"

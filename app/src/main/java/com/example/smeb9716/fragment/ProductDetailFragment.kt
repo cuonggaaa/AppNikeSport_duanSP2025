@@ -60,13 +60,13 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
             }
         }
 
-        binding.btnDecreaseQuantity.setOnClickListener {
-            viewModel.decreaseQuantity()
-        }
-
-        binding.btnIncreaseQuantity.setOnClickListener {
-            viewModel.increaseQuantity()
-        }
+//        binding.btnDecreaseQuantity.setOnClickListener {
+//            viewModel.decreaseQuantity()
+//        }
+//
+//        binding.btnIncreaseQuantity.setOnClickListener {
+//            viewModel.increaseQuantity()
+//        }
 
         binding.imvCart.setOnClickListener {
             val fragment = CartsFragment()
@@ -76,12 +76,16 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
         }
 
         binding.btnAddToCart.setOnClickListener {
+//            viewModel.product.value?.let {
+//                showConfirmAlert(
+//                    "Thêm vào giỏ hàng", "Bạn có chắc chắn muốn thêm sản phẩm này vào giỏ hàng?"
+//                ) {
+//                    viewModel.addCart(it, viewModel.quantity)
+//                }
+//            }
             viewModel.product.value?.let {
-                showConfirmAlert(
-                    "Thêm vào giỏ hàng", "Bạn có chắc chắn muốn thêm sản phẩm này vào giỏ hàng?"
-                ) {
-                    viewModel.addCart(it, viewModel.quantity)
-                }
+                val fragment = AddCartSheet(viewModel.product.value!!)
+                fragment.show(childFragmentManager, fragment.tag)
             }
         }
 
@@ -113,9 +117,9 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
             }
         }
 
-        viewModel.quantityLiveData.observe(viewLifecycleOwner) {
-            binding.tvQuantity.text = it.toString()
-        }
+//        viewModel.quantityLiveData.observe(viewLifecycleOwner) {
+//            binding.tvQuantity.text = it.toString()
+//        }
 
         WholeApp.cartCount.observe(viewLifecycleOwner) {
             it?.let {
@@ -169,8 +173,8 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
             if (product.isFavorite == true) R.drawable.ic_favorite_on else R.drawable.ic_favorite_off
         )
 
-        binding.tvQuantity.text = viewModel.quantity.toString()
-        binding.tvSize.text = "Kích thước: " + product.size ?: ""
+//        binding.tvQuantity.text = viewModel.quantity.toString()
+//        binding.tvSize.text = "Kích thước: " + product.size ?: ""
     }
 
     override fun initViews(binding: FragmentProductDetailBinding) {

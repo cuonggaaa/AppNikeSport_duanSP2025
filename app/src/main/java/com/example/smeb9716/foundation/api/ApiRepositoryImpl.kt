@@ -182,12 +182,13 @@ class ApiRepositoryImpl @Inject constructor(private val apiService: ApiService) 
     }
 
     override suspend fun addCart(
-        productId: String, quantity: Int, userId: String,
+        productId: String, quantity: Int, userId: String, size: String
     ): Data<BaseResponse> {
         return safeCallApi {
             apiService.addCart(
                 AddCartRequest(
-                    productId = productId, quantity = quantity, userId = userId
+                    productId = productId, quantity = quantity, userId = userId,
+                    size = size
                 )
             )
         }

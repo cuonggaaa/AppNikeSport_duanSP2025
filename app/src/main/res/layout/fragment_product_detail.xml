@@ -187,6 +187,7 @@
                 tools:text="Description asdfasi fhbaklm asygf ask asfbgasdas uyd asdfgvasjhf h a sfigafs uilfhjasjkl asfiuhasf ku sajyf hbga fgvaskiul fjas.ifhaf asuyf askjfhgasuf asfg asufkh aikfhafscbha" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/tv_size"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -245,6 +246,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/ll_quantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -261,14 +263,15 @@
                     android:contentDescription="decrease quantity"
                     android:src="@drawable/ic_remove" />
 
-                <TextView
-                    android:id="@+id/tv_quantity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="4dp"
-                    android:paddingEnd="4dp"
-                    android:text="12"
-                    android:textSize="20sp" />
+<!--                <TextView-->
+<!--                    android:visibility="gone"-->
+<!--                    android:id="@+id/tv_quantity"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:paddingStart="4dp"-->
+<!--                    android:paddingEnd="4dp"-->
+<!--                    android:text="12"-->
+<!--                    android:textSize="20sp" />-->
 
                 <ImageButton
                     android:id="@+id/btn_increase_quantity"
@@ -292,7 +295,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/ll_quantity"
-                app:layout_constraintStart_toEndOf="@id/ll_quantity"
+                app:layout_constraintStart_toEndOf="@id/ll_price"
                 app:layout_constraintTop_toTopOf="@id/ll_quantity" />
 
             <com.google.android.material.divider.MaterialDivider

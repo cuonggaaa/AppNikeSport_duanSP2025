@@ -16,9 +16,20 @@ data class Product(
     val updatedAt: String? = "",
     val reviewCount: Int? = 0,
     var isFavorite: Boolean? = false,
-    var size: String? = "",
+    var sizes: List<ProductSize>? = emptyList(),
     ) {
     fun getDiscountedPrice(): Long {
         return (price?.minus(discount ?: 0) ?: 0).coerceAtLeast(0)
+    }
+}
+
+
+data class ProductSize(
+    @SerializedName("_id") val id: String,
+    val size: String,
+    val quantity: Int,
+) {
+    override fun toString(): String {
+        return size
     }
 }

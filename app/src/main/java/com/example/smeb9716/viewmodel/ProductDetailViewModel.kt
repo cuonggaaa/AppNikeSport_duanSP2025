@@ -36,8 +36,8 @@ class ProductDetailViewModel @Inject constructor(
 
     val addCartSuccess = MutableLiveData(false)
 
-    fun increaseQuantity() {
-        if (quantity + 1 <= (product.value?.quantity ?: 0)) {
+    fun increaseQuantity(stock: Int) {
+        if (quantity + 1 <= stock) {
             quantity++
         }
     }
@@ -149,11 +149,11 @@ class ProductDetailViewModel @Inject constructor(
         }
     }
 
-    fun addCart(product: Product, quantity: Int) {
+    fun addCart(product: Product, quantity: Int, size: String) {
         viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
             showLoading(true)
             val response = apiRepository.addCart(
-                userId = WholeApp.USER_ID, productId = product.id, quantity = quantity
+                userId = WholeApp.USER_ID, productId = product.id, quantity = quantity, size = size
             )
             showLoading(false)
             handleResponse(response = response, onSuccess = {
