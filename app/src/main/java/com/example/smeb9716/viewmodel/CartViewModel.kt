@@ -77,7 +77,10 @@ class CartViewModel @Inject constructor(
     }
 
     fun increaseQuantity(cart: Cart) {
-        updateQuantity(cart, cart.quantity + 1)
+        val availableSize = cart.productId.sizes?.find { it.size == cart.size }
+        if (availableSize != null && cart.quantity < availableSize.quantity) {
+            updateQuantity(cart, cart.quantity + 1)
+        }
     }
 
     fun decreaseQuantity(cart: Cart) {

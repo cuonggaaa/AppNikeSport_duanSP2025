@@ -20,16 +20,8 @@
             android:text="@string/register"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_21"
-            android:layout_marginTop="@dimen/margin_36" />
+           />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_20"
-            android:text="@string/title_require_input_register"
-            android:textSize="@dimen/text_size_16"
-            android:textColor="@color/gray_595959"
-            android:fontFamily="@font/montserrat_medium" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -65,7 +57,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_15"
             android:text="@string/label_phone_number"
             android:textSize="@dimen/text_size_16"
             android:fontFamily="@font/montserrat_semi_bold"
@@ -97,7 +88,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_15"
             android:text="@string/title_email"
             android:textSize="@dimen/text_size_16"
             android:fontFamily="@font/montserrat_semi_bold"
@@ -128,7 +118,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_15"
             android:text="@string/title_password"
             android:textSize="@dimen/text_size_16"
             android:fontFamily="@font/montserrat_semi_bold"
@@ -160,7 +149,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_15"
             android:text="@string/re_password"
             android:textSize="@dimen/text_size_16"
             android:fontFamily="@font/montserrat_semi_bold"
@@ -192,7 +180,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_15"
             android:text="Địa chỉ"
             android:textSize="@dimen/text_size_16"
             android:fontFamily="@font/montserrat_semi_bold"
@@ -228,7 +215,6 @@
             android:layout_height="wrap_content"
             android:text="@string/policy"
             android:textSize="@dimen/text_size_14"
-            android:layout_marginTop="@dimen/margin_20"
             android:fontFamily="@font/montserrat_regular"
             app:layout_constraintTop_toBottomOf="@id/tilAddress"
             app:layout_constraintStart_toStartOf="parent" />
@@ -237,7 +223,6 @@
             android:id="@+id/btnSignUp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_60"
-            android:layout_marginTop="@dimen/margin_40"
             android:fontFamily="@font/montserrat_semi_bold"
             android:text="@string/register"
             android:textColor="@color/white"
