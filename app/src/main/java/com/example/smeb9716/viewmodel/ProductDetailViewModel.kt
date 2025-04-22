@@ -158,8 +158,15 @@ class ProductDetailViewModel @Inject constructor(
             showLoading(false)
             handleResponse(response = response, onSuccess = {
                 // Handle success response
-                WholeApp.cartCount.postValue(WholeApp.cartCount.value?.plus(1))
-                addCartSuccess.postValue(true)
+                if (it?.success == false) {
+                    handleMessage(
+                        message = it.message ?: "Lỗi không xác định", bgType = BGType.BG_TYPE_ERROR
+                    )
+                } else {
+                    WholeApp.cartCount.postValue(WholeApp.cartCount.value?.plus(1))
+                    addCartSuccess.postValue(true)
+                }
+
             }, onError = { errorMsg ->
                 // Handle error response
                 handleMessage(

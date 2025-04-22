@@ -53,8 +53,17 @@ class OrderHistoryAdapter : RecyclerView.Adapter<OrderHistoryAdapter.ViewHolder>
                 binding.rvOrderDetail.adapter = productAdapter
 
                 binding.tvOrderTotal.text = "${order.totalAmount.toString().toMoneyFormat()} VND"
-                binding.tvOrderStatus.text = order.status
-
+//                binding.tvOrderStatus.text = order.status
+                val statusVi = when (order.status) {
+                    "Pending" -> "Chờ xử lý"
+                    "Processing" -> "Đang xử lý"
+                    "Shipped" -> "Đang vận chuyển"
+                    "Delivered" -> "Đã giao hàng"
+                    "Cancelled" -> "Đã hủy"
+                    "Returned" -> "Đã trả lại"
+                    else -> "Không xác định"
+                }
+                binding.tvOrderStatus.text = statusVi
                 val address = if (order.address.isNullOrEmpty()) (order.userId?.address
                     ?: "") else order.address
                 binding.tvOrderAddress.text = address
